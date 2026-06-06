@@ -1,0 +1,472 @@
+---
+// Hero.astro — Diseño estilo HomeMaster: verde bosque + imagen + tarjetas flotantes
+---
+
+<section id="inicio" class="hero-section">
+  <!-- Logo Container — Responsive y coherente -->
+  <div class="logo-container">
+    <div class="logo-wrapper">
+      <img
+        src="/images/logoMain.png"
+        alt="Logo de la empresa"
+        class="logo-img"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <div class="hero-inner container">
+    <!-- ───── LEFT COLUMN ───── -->
+    <div class="hero-content">
+      <span class="hero-tag">Distribuidora de Productos de Limpieza</span>
+
+      <h1 class="hero-title">
+        Tu Aliado Confiable en<br />Limpieza e Higiene
+      </h1>
+
+      <p class="hero-subtitle">
+        Ofrecemos productos de limpieza de calidad para hogares, comercios y
+        empresas. Atención rápida, precios competitivos y stock permanente para
+        mantener cada espacio limpio e higiénico en La Paz y alrededores.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn-hero-primary">Ver Catálogo</a>
+        <a href="#nosotros" class="btn-hero-outline">Conócenos</a>
+      </div>
+    </div>
+
+    <!-- ───── RIGHT COLUMN — cleaner image ───── -->
+    <div class="hero-image-col">
+      <div class="hero-img-wrap">
+        <img
+          src="/images/hero_cleaner.png"
+          alt="Profesional de limpieza con productos"
+          class="hero-img"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Divider -->
+  <div class="hero-wave" aria-hidden="true">
+    <svg
+      viewBox="0 0 1440 80"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f3f8f6"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+<!-- Feature Cards — flotan debajo del Hero -->
+<div class="features-belt container">
+  <div class="feature-card">
+    <div class="feature-icon">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        width="24"
+        height="24"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+    </div>
+    <div class="feature-body">
+      <h3 class="feature-title">Transparencia</h3>
+      <p class="feature-desc">
+        Pesaje preciso y atención honesta en cada uno de nuestros suministros de
+        limpieza.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-card feature-card--accent">
+    <div class="feature-icon feature-icon--white">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        width="24"
+        height="24"
+      >
+        <path
+          d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+        ></path>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+      </svg>
+    </div>
+    <div class="feature-body">
+      <h3 class="feature-title feature-title--white">Disponibilidad</h3>
+      <p class="feature-desc feature-desc--white">
+        Stock permanente para clientes particulares, comercios, oficinas y
+        distribuidores.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon feature-icon--orange">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        width="24"
+        height="24"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+    </div>
+    <div class="feature-body">
+      <h3 class="feature-title">Atención Inmediata</h3>
+      <p class="feature-desc">
+        Respuesta rápida, despachos organizados y un servicio cercano adaptado a
+        su negocio.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── Logo Container ── */
+  .logo-container {
+    padding: 1.5rem 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 2px solid rgba(234, 118, 56, 0.15);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .logo-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  }
+
+  .logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Section ── */
+  .hero-section {
+    font-family: "Manrope", sans-serif;
+    position: relative;
+    background: linear-gradient(135deg, #093d28 0%, #0e5c3c 60%, #125c3a 100%);
+    overflow: hidden;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  /* ── Inner layout ── */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Left content ── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    align-self: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ea7638;
+    background: rgba(234, 118, 56, 0.12);
+    border: 1px solid rgba(234, 118, 56, 0.35);
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── Buttons ── */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    background: #ea7638;
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(234, 118, 56, 0.4);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  .btn-hero-primary:hover {
+    background: #d05e24;
+    transform: translateY(-2px);
+  }
+
+  .btn-hero-outline {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #ffffff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .btn-hero-outline:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Right image ── */
+  .hero-image-col {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    object-fit: cover;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.3));
+  }
+
+  /* ── Wave divider ── */
+  .hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 1;
+  }
+  .hero-wave svg {
+    display: block;
+    width: 100%;
+    height: 80px;
+  }
+
+  /* ── Feature Belt ── */
+  .features-belt {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: -2.5rem;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 3rem;
+  }
+
+  .feature-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    box-shadow: 0 8px 30px rgba(9, 61, 40, 0.1);
+    border: 1px solid var(--color-border);
+  }
+
+  .feature-card--accent {
+    background: linear-gradient(135deg, #093d28 0%, #0e5c3c 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 30px rgba(9, 61, 40, 0.25);
+  }
+
+  .feature-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--color-accent-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .feature-icon--white {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+  .feature-icon--orange {
+    background: rgba(234, 118, 56, 0.12);
+    color: #ea7638;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    margin: 0 0 0.3rem;
+  }
+  .feature-title--white {
+    color: #ffffff;
+  }
+
+  .feature-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .feature-desc--white {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 640px) {
+    .features-belt {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .logo-wrapper {
+      width: 90px;
+      height: 90px;
+    }
+
+    .logo-img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .hero-section {
+      padding-top: 1rem;
+      padding-bottom: 6rem;
+    }
+    .hero-content {
+      text-align: left;
+    }
+    .hero-tag {
+      align-self: flex-start;
+    }
+    .hero-subtitle {
+      margin: 0;
+    }
+    .hero-actions {
+      justify-content: flex-start;
+    }
+    .features-belt {
+      margin-top: -3rem;
+    }
+
+    .logo-wrapper {
+      width: 100px;
+      height: 100px;
+    }
+
+    .logo-img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding-top: 2rem;
+      padding-bottom: 7rem;
+    }
+    .hero-inner {
+      gap: 4rem;
+    }
+
+    .logo-wrapper {
+      width: 110px;
+      height: 110px;
+    }
+
+    .logo-img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+</style>

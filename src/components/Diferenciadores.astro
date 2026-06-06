@@ -1,0 +1,321 @@
+---
+// Diferenciadores.astro — "Nuestro Compromiso con la Excelencia" (HomeMaster style)
+---
+
+<section id="diferenciadores" class="diff-section">
+  <div class="diff-container container">
+    <!-- Columna izquierda: texto + checks -->
+    <div class="diff-content">
+      <span class="diff-badge">¿Por qué elegirnos?</span>
+
+      <h2 class="diff-title">Nuestro Compromiso con la Excelencia</h2>
+
+      <p class="diff-desc">
+        Nos esforzamos cada día para que nuestros clientes reciban exactamente
+        lo que necesitan: productos de calidad, en tiempo y con la atención que
+        su negocio merece.
+      </p>
+
+      <ul class="diff-checks">
+        <li class="diff-check-item">
+          <span class="diff-check-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span>Insumos amigables con el medio ambiente</span>
+        </li>
+        <li class="diff-check-item">
+          <span class="diff-check-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span>Distribución personalizada por zona</span>
+        </li>
+        <li class="diff-check-item">
+          <span class="diff-check-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span>Stock permanente y precios competitivos</span>
+        </li>
+        <li class="diff-check-item">
+          <span class="diff-check-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </span>
+          <span>Atención directa via WhatsApp</span>
+        </li>
+      </ul>
+
+      <a href="#contacto" class="diff-cta">Contáctenos Ahora</a>
+    </div>
+
+    <!-- Columna derecha: collage de imágenes -->
+    <div class="diff-gallery" aria-hidden="true">
+      <div class="diff-img-large">
+        <img
+          src="/images/cat_desengrasante.png"
+          alt="Desengrasantes industriales"
+          class="diff-img"
+          loading="lazy"
+        />
+      </div>
+      <div class="diff-img-small-group">
+        <div class="diff-img-small">
+          <img
+            src="/images/cat_esponja.png"
+            alt="Esponjas y paños"
+            class="diff-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="diff-img-small">
+          <img
+            src="/images/cat_limpiapisos.png"
+            alt="Limpiapisos"
+            class="diff-img"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .diff-section {
+    font-family: "Manrope", sans-serif;
+    background: linear-gradient(135deg, #093d28 0%, #0a4830 60%, #0e5c3c 100%);
+    padding: 4rem 0;
+    overflow: hidden;
+  }
+
+  .diff-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* ── Content left ── */
+  .diff-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .diff-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ea7638;
+    background: rgba(234, 118, 56, 0.12);
+    border: 1px solid rgba(234, 118, 56, 0.35);
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+  }
+
+  .diff-title {
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin: 0;
+  }
+
+  .diff-desc {
+    font-size: 0.93rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* ── Checks ── */
+  .diff-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .diff-check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .diff-check-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ea7638;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .diff-cta {
+    display: inline-flex;
+    align-self: flex-start;
+    background: #ea7638;
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(234, 118, 56, 0.35);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .diff-cta:hover {
+    background: #d05e24;
+    transform: translateY(-2px);
+  }
+
+  /* ── Gallery right ── */
+  .diff-gallery {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-rows: 1fr; /* una sola fila que ocupa toda la altura */
+    gap: 0.75rem;
+    height: 420px; /* altura fija del collage */
+  }
+
+  /* Imagen grande: ocupa toda la altura de la fila */
+  .diff-img-large {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* Grupo pequeño: flex column que se reparte la misma altura */
+  .diff-img-small-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  /* Cada imagen pequeña toma exactamente la mitad */
+  .diff-img-small {
+    border-radius: 14px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0; /* permite que flex shrink funcione */
+  }
+
+  .diff-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .diff-img-large:hover .diff-img,
+  .diff-img-small:hover .diff-img {
+    transform: scale(1.05);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .diff-gallery {
+      height: 260px;
+      gap: 0.5rem;
+    }
+    .diff-img-small-group {
+      gap: 0.5rem;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 767px) {
+    .diff-gallery {
+      height: 340px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .diff-section {
+      padding: 5rem 0;
+    }
+    .diff-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .diff-gallery {
+      order: 2;
+      height: 460px;
+    }
+    .diff-content {
+      order: 1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .diff-section {
+      padding: 6rem 0;
+    }
+    .diff-container {
+      gap: 5rem;
+    }
+    .diff-gallery {
+      height: 520px;
+    }
+  }
+</style>

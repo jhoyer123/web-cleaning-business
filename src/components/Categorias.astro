@@ -1,0 +1,280 @@
+---
+// Categorias.astro — Estilo "Shop By Category" (Crescendo)
+
+const categories = [
+  {
+    id: "lavandinas",
+    name: "Lavandinas",
+    description:
+      "Desinfectantes y blanqueadores concentrados para higiene profunda en hogares y comercios.",
+    image: "/images/cat_lavandina.png",
+  },
+  {
+    id: "detergentes",
+    name: "Detergentes",
+    description:
+      "Fórmulas en polvo y líquidas de alto rendimiento para ropa, vajilla e industria.",
+    image: "/images/cat_detergente.png",
+  },
+  {
+    id: "limpiapisos",
+    name: "Limpiapisos",
+    description:
+      "Líquidos aromatizados y germicidas para todo tipo de superficies y pisos.",
+    image: "/images/cat_limpiapisos.png",
+  },
+  {
+    id: "desengrasantes",
+    name: "Desengrasantes",
+    description:
+      "Removedores de grasa pesada para cocinas, maquinaria y uso industrial.",
+    image: "/images/cat_desengrasante.png",
+  },
+  {
+    id: "esponjas",
+    name: "Esponjas y Paños",
+    description:
+      "Fibras abrasivas, paños absorbentes y esponjas de alta duración.",
+    image: "/images/cat_esponja.png",
+  },
+];
+---
+
+<section id="categorias" class="cat-section">
+  <div class="cat-wrap container">
+    <!-- Header -->
+    <div class="cat-header">
+      <div class="cat-header-left">
+        <span class="cat-badge">Nuestras Líneas</span>
+        <h2 class="cat-heading">Categorías de Productos</h2>
+      </div>
+      <!-- <a href="#catalogo" class="cat-see-all">Ver Todo el Catálogo &rsaquo;</a> -->
+    </div>
+
+    <!-- Grid de categorías -->
+    <div class="cat-grid">
+      {
+        categories.map((cat) => (
+          <a href={`#catalogo`} class="cat-card" data-cat-link={cat.id}>
+            <div class="cat-card-body">
+              <h3 class="cat-card-title">{cat.name}</h3>
+              <p class="cat-card-desc">{cat.description}</p>
+              {/* <span class="cat-card-link">Ver {cat.name} &rsaquo;</span> */}
+            </div>
+            <div class="cat-card-img-wrap">
+              <img
+                src={cat.image}
+                alt={cat.name}
+                class="cat-card-img"
+                loading="lazy"
+              />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Cuando hacen click en una tarjeta de categoría, activan el filtro en el catálogo
+  const catLinks = document.querySelectorAll("[data-cat-link]");
+  catLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const catId = (link as HTMLElement).getAttribute("data-cat-link");
+      // Disparamos un custom event para que Catalogo.astro lo escuche
+      window.dispatchEvent(
+        new CustomEvent("selectCategory", { detail: catId }),
+      );
+    });
+  });
+</script>
+
+<style>
+  .cat-section {
+    font-family: "Manrope", sans-serif;
+    background: var(--color-light-gray);
+    padding: 4rem 0;
+  }
+
+  .cat-wrap {
+  }
+
+  /* ── Header ── */
+  .cat-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .cat-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cat-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(9, 61, 40, 0.08);
+    border: 1px solid rgba(9, 61, 40, 0.15);
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+    align-self: flex-start;
+  }
+
+  .cat-heading {
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin: 0;
+  }
+
+  .cat-see-all {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    align-self: flex-start;
+    border: 1.5px solid var(--color-accent);
+    padding: 0.45rem 1.1rem;
+    border-radius: 50px;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  .cat-see-all:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  /* ── Grid ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* ── Card ── */
+  .cat-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s;
+    box-shadow: 0 2px 10px rgba(9, 61, 40, 0.05);
+    cursor: pointer;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(9, 61, 40, 0.12);
+    border-color: rgba(9, 61, 40, 0.2);
+  }
+
+  .cat-card-body {
+    padding: 1.4rem 1.4rem 1rem;
+    flex: 1;
+  }
+
+  .cat-card-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cat-card-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+  }
+
+  .cat-card-link {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+  .cat-card:hover .cat-card-link {
+    color: var(--color-accent);
+  }
+
+  .cat-card-img-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: var(--color-accent-light);
+  }
+
+  .cat-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .cat-card:hover .cat-card-img {
+    transform: scale(1.06);
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 540px) {
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .cat-section {
+      padding: 5rem 0;
+    }
+    .cat-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .cat-see-all {
+      align-self: flex-end;
+    }
+    .cat-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .cat-card-img-wrap {
+      height: 160px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cat-section {
+      padding: 6rem 0;
+    }
+    .cat-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .cat-card-img-wrap {
+      height: 140px;
+    }
+    .cat-card-body {
+      padding: 1.2rem 1.2rem 0.85rem;
+    }
+  }
+</style>

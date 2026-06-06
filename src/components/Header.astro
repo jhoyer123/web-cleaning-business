@@ -1,0 +1,348 @@
+---
+// Header.astro
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<header class="header">
+  <div class="container header-container">
+    <a href="/" class="logo">
+      <span class="logo-text">Rincón de las Ofertas</span>
+      <span class="logo-subtext">Limpieza La Paz</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Abrir menú de navegación"
+    >
+      <span class="hamburger"></span>
+    </button>
+
+    <nav class="nav" id="navigationMenu">
+      <ul class="nav-list">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#categorias" class="nav-link">Categorías</a></li>
+        <li><a href="#diferenciadores" class="nav-link">Diferenciadores</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-action">
+      <a
+        href="https://wa.me/59170000000?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20productos%20de%20limpieza."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-secondary header-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="wa-icon"
+          ><path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+          ></path></svg
+        >
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const navToggle = document.getElementById("navToggle");
+  const navigationMenu = document.getElementById("navigationMenu");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function closeMenu() {
+    navigationMenu?.classList.remove("nav-active");
+    navToggle?.classList.remove("toggle-active");
+    document.body.classList.remove("nav-open");
+  }
+
+  if (navToggle && navigationMenu) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navigationMenu.classList.toggle("nav-active");
+      navToggle.classList.toggle("toggle-active");
+      // Bloquea el scroll del body y evita el desbordamiento horizontal
+      document.body.classList.toggle("nav-open", isOpen);
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  }
+</script>
+
+<style>
+  .header,
+  .header * {
+    font-family: "Manrope", sans-serif;
+  }
+
+  .header {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 72px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  /* ── Logo ── */
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+  }
+
+  .logo-subtext {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-primary-light);
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+  }
+
+  /* ── Hamburger ── */
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 110;
+  }
+
+  .hamburger {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-primary);
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-primary);
+    position: absolute;
+    transition:
+      transform 0.3s ease,
+      top 0.3s ease;
+  }
+
+  .hamburger::before {
+    top: -6px;
+  }
+  .hamburger::after {
+    top: 6px;
+  }
+
+  .toggle-active .hamburger {
+    background-color: transparent;
+  }
+  .toggle-active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .toggle-active .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* ── Nav — mobile ── */
+  .nav {
+    position: fixed;
+    top: 72px;
+    /* FIX: left:0 + width:100% en vez de 100vw evita scroll horizontal */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 72px);
+    background: linear-gradient(
+      160deg,
+      #ffffff 0%,
+      var(--color-accent-light) 100%
+    );
+    padding: 2rem 1.5rem;
+    /* FIX: translateX fuera de pantalla hacia la derecha pero sin causar overflow */
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 105;
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 10px 25px rgba(9, 61, 40, 0.1);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .nav-active {
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    display: block;
+    padding: 0.8rem 0;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* ── Header action (desktop) ── */
+  .header-action {
+    display: none;
+  }
+
+  .wa-icon {
+    margin-right: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .header-btn {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-accent);
+    color: #fff !important;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 4px 14px rgba(234, 118, 56, 0.3);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+
+  .header-btn:hover {
+    background: #d05e24;
+    transform: translateY(-1px);
+  }
+
+  /* ── Desktop ── */
+  @media (min-width: 768px) {
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav {
+      position: static;
+      padding: 0;
+      width: auto;
+      height: auto;
+      transform: none;
+      border-top: none;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .nav-list {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.4rem 0;
+      color: var(--color-text-dark);
+      border-bottom: none;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    .header-action {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .nav-list {
+      gap: 2rem;
+    }
+  }
+</style>
+
+<!-- FIX GLOBAL: cuando el menú está abierto, bloquea scroll y overflow del body -->
+<style is:global>
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  body.nav-open {
+    overflow: hidden;
+  }
+</style>

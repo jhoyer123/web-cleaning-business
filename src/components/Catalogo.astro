@@ -1,0 +1,367 @@
+---
+// Catalogo.astro — Estilo "Featured Products by Category" (Crescendo)
+import { PRODUCTOS, CATEGORIAS } from "../data/productos";
+
+// Agrupamos por categoría (sin "todos"), tomamos los primeros 4 de cada una
+const categoriasSinTodos = CATEGORIAS.filter((c) => c.id !== "todos");
+---
+
+<section id="catalogo" class="catalog-section">
+  <div class="catalog-wrap container">
+
+    <!-- Header -->
+    <div class="catalog-header">
+      <div>
+        <span class="catalog-badge">Catálogo Digital</span>
+        <h2 class="catalog-heading">Suministros Disponibles</h2>
+        <p class="catalog-subtitle">
+          Consulte nuestras líneas de distribución. Entregas a comercios, empresas y
+          hogares en La Paz. Haga clic en "Cotizar" para contactarnos por WhatsApp.
+        </p>
+      </div>
+    </div>
+
+    <!-- Filtros rápidos -->
+    <div class="catalog-filters" id="catalogFilters">
+      {
+        CATEGORIAS.map((cat) => (
+          <button
+            class={`filter-btn ${cat.id === "todos" ? "filter-btn--active" : ""}`}
+            data-filter={cat.id}
+          >
+            {cat.nombre}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Un bloque por categoría -->
+    {
+      categoriasSinTodos.map((cat) => {
+        const productos = PRODUCTOS.filter((p) => p.categoria === cat.id).slice(0, 4);
+        return (
+          <div
+            class="cat-block"
+            id={`cat-block-${cat.id}`}
+            data-cat-block={cat.id}
+          >
+            <div class="cat-block-header">
+              <h3 class="cat-block-title">{cat.nombre}</h3>
+              <span class="cat-block-count">{productos.length} productos</span>
+            </div>
+            <div class="products-grid">
+              {productos.map((prod) => {
+                const waMsg = encodeURIComponent(
+                  `Hola, me interesa cotizar: ${prod.nombre} (${prod.presentacion})`
+                );
+                const waLink = `https://wa.me/59170000000?text=${waMsg}`;
+                return (
+                  <div class="product-card">
+                    <div class="product-img-wrap">
+                      <img
+                        src={prod.imagen}
+                        alt={prod.nombre}
+                        class="product-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="product-info">
+                      <span class="product-pres">{prod.presentacion}</span>
+                      <h4 class="product-title">{prod.nombre}</h4>
+                      <p class="product-desc">{prod.descripcion}</p>
+                      <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-wa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        Cotizar
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })
+    }
+
+  </div>
+</section>
+
+<script>
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const catBlocks = document.querySelectorAll("[data-cat-block]");
+
+  function applyFilter(filterId: string) {
+    filterBtns.forEach((b) => b.classList.remove("filter-btn--active"));
+    const activeBtn = document.querySelector(`[data-filter="${filterId}"]`);
+    if (activeBtn) activeBtn.classList.add("filter-btn--active");
+
+    catBlocks.forEach((block) => {
+      const el = block as HTMLElement;
+      const blockCat = el.getAttribute("data-cat-block");
+      const show = filterId === "todos" || blockCat === filterId;
+      el.style.display = show ? "block" : "none";
+    });
+  }
+
+  // Click en filtros
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filterId = btn.getAttribute("data-filter") ?? "todos";
+      applyFilter(filterId);
+    });
+  });
+
+  // Escucha el custom event de Categorias.astro
+  window.addEventListener("selectCategory", (e: Event) => {
+    const catId = (e as CustomEvent).detail as string;
+    applyFilter(catId);
+    // Scroll suave al catálogo
+    const catalogSection = document.getElementById("catalogo");
+    if (catalogSection) {
+      catalogSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+</script>
+
+<style>
+  .catalog-section {
+    font-family: "Manrope", sans-serif;
+    background: #ffffff;
+    padding: 4rem 0;
+  }
+
+  /* ── Header ── */
+  .catalog-header {
+    margin-bottom: 2rem;
+  }
+
+  .catalog-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: rgba(9, 61, 40, 0.08);
+    border: 1px solid rgba(9, 61, 40, 0.15);
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .catalog-heading {
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin: 0 0 0.6rem;
+  }
+
+  .catalog-subtitle {
+    font-size: 0.93rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0;
+  }
+
+  /* ── Filtros ── */
+  .catalog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .filter-btn {
+    font-family: "Manrope", sans-serif;
+    background: var(--color-light-gray);
+    border: 1.5px solid var(--color-border);
+    padding: 0.45rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #fff;
+  }
+  .filter-btn--active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 14px rgba(9, 61, 40, 0.2);
+  }
+
+  /* ── Cat block ── */
+  .cat-block {
+    margin-bottom: 3rem;
+  }
+
+  .cat-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-accent-light);
+  }
+
+  .cat-block-title {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .cat-block-count {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    background: var(--color-light-gray);
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.75rem;
+    border-radius: 50px;
+  }
+
+  /* ── Products Grid ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* ── Card ── */
+  .product-card {
+    background: var(--color-light-gray);
+    border-radius: 18px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 8px rgba(9, 61, 40, 0.04);
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(9, 61, 40, 0.1);
+  }
+
+  /* ── Imagen ── */
+  .product-img-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .product-card:hover .product-img {
+    transform: scale(1.06);
+  }
+
+  /* ── Info ── */
+  .product-info {
+    padding: 1.1rem 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.4rem;
+    background: #fff;
+  }
+
+  .product-pres {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .product-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .product-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  /* ── Botón WA ── */
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    background: var(--color-primary);
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(9, 61, 40, 0.2);
+  }
+  .btn-wa:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-1px);
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 540px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .catalog-section {
+      padding: 5rem 0;
+    }
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .catalog-section {
+      padding: 6rem 0;
+    }
+    .products-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .product-img-wrap {
+      height: 165px;
+    }
+  }
+</style>

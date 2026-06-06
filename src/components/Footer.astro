@@ -1,0 +1,213 @@
+---
+// Footer.astro — Fondo verde bosque
+---
+
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="footer-logo-text">DISTRIBUIDORA</span>
+          <span class="footer-logo-sub">Limpieza La Paz</span>
+        </div>
+        <p class="footer-desc">
+          Distribución confiable de insumos de limpieza al por mayor y menor
+          para la ciudad de La Paz y alrededores. Calidad garantizada.
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <div class="footer-nav">
+        <h4 class="footer-col-title">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#categorias">Categorías</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#diferenciadores">Diferenciadores</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer-contact">
+        <h4 class="footer-col-title">Contacto Comercial</h4>
+        <p class="footer-contact-item">
+          <strong>Dirección:</strong> Av. Kollasuyo Nº 1245, Zona Cementerio, La Paz
+          - Bolivia
+        </p>
+        <p class="footer-contact-item">
+          <strong>WhatsApp:</strong>
+          <a
+            href="https://wa.me/59170000000"
+            target="_blank"
+            rel="noopener noreferrer">+591 78876567</a
+          >
+        </p>
+        <p class="footer-contact-item">
+          <strong>Horarios:</strong> Lun - Vie 08:30 - 18:30 | Sáb 09:00 - 13:00
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; {new Date().getFullYear()} Distribuidora de Productos de Limpieza La
+        Paz. Todos los derechos reservados.
+      </p>
+      <p class="footer-meta">Diseño y modernización digital institucional.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    font-family: "Manrope", sans-serif;
+    background: linear-gradient(160deg, #093d28 0%, #0a4830 100%);
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+    margin-top: auto;
+    width: 100%;
+  }
+
+  .footer-inner {
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Brand ── */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .footer-logo-text {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+  }
+
+  .footer-logo-sub {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ea7638;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .footer-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 300px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── Columns ── */
+  .footer-col-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #ea7638;
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .footer-links a {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: #ea7638;
+  }
+
+  .footer-contact-item {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+  }
+  .footer-contact-item:last-child {
+    margin-bottom: 0;
+  }
+  .footer-contact-item strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+  }
+  .footer-contact-item a {
+    color: #ea7638;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .footer-contact-item a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Bottom ── */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .footer-bottom p {
+    margin: 0;
+  }
+  .footer-meta {
+    font-weight: 600;
+  }
+
+  /* ── Responsive ── */
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1.3fr;
+      gap: 2rem;
+    }
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      gap: 4rem;
+    }
+  }
+</style>
